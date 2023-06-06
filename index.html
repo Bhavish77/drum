@@ -10,6 +10,9 @@
 
 
   <div class="keys">
+   
+
+    <div class="container">
     <div data-key="KeyA" class="key">
       <kbd>A</kbd>
       <span class="sound">clap</span>
@@ -46,6 +49,7 @@
       <kbd>L</kbd>
       <span class="sound">tink</span>
     </div>
+</div>
   </div>
 
   <audio data-key="KeyA" src="sounds/clap.wav"></audio>
@@ -79,14 +83,36 @@
   const keys = Array.from(document.querySelectorAll('.key'));
   keys.forEach(key => key.addEventListener('transitionend', removeTransition));  //when this   transition: all .07s ease; ends //
   window.addEventListener('keydown', playSound);
-  keys.forEach(function(item) {
-    item.addEventListener('click', function(e) {
-    console.log(e);
-    const clickedElement = e.target;
-    console.log('Clicked element:', clickedElement);
-    const dataKey = clickedElement.getAttribute('data-key');
+//   keys.forEach(function(item) {
+//     item.addEventListener('click', function(e) {
+//     console.log(e);
+//     const clickedElement = e.target;
+//     console.log('Clicked element:', clickedElement);
+//     const dataKey = clickedElement.getAttribute('data-key');
 
-    console.log('Clicked element data-key:', dataKey);
+//     console.log('Clicked element data-key:', dataKey);
+//     const audio = document.querySelector(`audio[data-key="${dataKey}"]`);
+//     const key = document.querySelector(`div[data-key="${dataKey}"]`);
+//     if (!audio) return;
+
+//      key.classList.add('playing');
+//      audio.currentTime = 0;
+//      audio.play();
+//       });
+//     });
+
+const keys2 = document.querySelector('.container')
+console.log(`this is keys2 ${keys2}`);
+
+
+
+keys2.addEventListener('click', (event) => {
+  const clickedElement = event.target.closest('div.key');
+
+  if (clickedElement) {
+    const dataKey = clickedElement.getAttribute('data-key');
+    console.log('Clicked element with data-value:', dataKey);
+    // Perform your desired action here
     const audio = document.querySelector(`audio[data-key="${dataKey}"]`);
     const key = document.querySelector(`div[data-key="${dataKey}"]`);
     if (!audio) return;
@@ -94,8 +120,15 @@
      key.classList.add('playing');
      audio.currentTime = 0;
      audio.play();
-      });
-    });
+
+  }
+    
+
+
+});
+
+
+
   
 </script>
 
